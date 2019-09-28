@@ -17,14 +17,13 @@ limitations under the License.
 package v1
 
 import (
-	"github.com/liuyehcf/demo-controller/pkg/apis/democontroller"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )
 
 // SchemeGroupVersion is group version used to register these objects
-var SchemeGroupVersion = schema.GroupVersion{Group: democontroller.GroupName, Version: democontroller.GroupVersion}
+var SchemeGroupVersion = schema.GroupVersion{Group: "democontroller.github.com.liuyehcf", Version: "v1"}
 
 // Kind takes an unqualified kind and returns back a Group qualified GroupKind
 func Kind(kind string) schema.GroupKind {

@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	clientset "github.com/liuyehcf/demo-controller/pkg/generated/clientset/versioned"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/klog"
 	// Uncomment the following line to load the gcp plugin (only required to authenticate against GKE clusters).
@@ -60,14 +60,20 @@ func main() {
 	cfg, err := clientcmd.BuildConfigFromFlags(masterURL, kubeconfig)
 	if err != nil {
 		klog.Fatalf("Error building kubeconfig: %s", err.Error())
+		return
 	}
 
 	exampleClient, err := clientset.NewForConfig(cfg)
 	if err != nil {
 		klog.Fatalf("Error building example clientset: %s", err.Error())
+		return
 	}
 
-	myConfigList, _ := exampleClient.DemocontrollerV1().MyConfigs("").List(metav1.ListOptions{})
+	myConfigList, err := exampleClient.DemocontrollerV1().MyConfigs("").List(metav1.ListOptions{})
+	if err != nil {
+		klog.Fatalf("Error listing myconfigs: %s", err.Error())
+		return
+	}
 
 	fmt.Println(myConfigList)
 }
