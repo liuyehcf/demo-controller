@@ -1,0 +1,7 @@
+apiVersion: democontroller.github.com.liuyehcf/v1
+kind: MyConfig
+metadata:
+  name: example-myconfig
+spec:
+  configName: Country
+  configValue: China

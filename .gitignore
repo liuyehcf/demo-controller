@@ -1,0 +1,4 @@
+.idea/
+go.sum
+pkg/generated
+zz_generated.deepcopy.go
